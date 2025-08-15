@@ -164,7 +164,7 @@ dotnet test --filter "BulkBatchUpload_ShouldUploadImagesWithMetadata"
 
 ## Additional Features
 
-- **User-Agent Workaround**: Handles problematic URLs (e.g., Indigo images)
+- **User-Agent Workaround**: Handles problematic URLs (e.g., Some host requires User-agent in the header)
 - **Staged Upload**: Custom headers for CDN issues
 - **GraphQL Support**: Full GraphQL query and mutation support
 - **Error Recovery**: Automatic retry logic with detailed reporting
