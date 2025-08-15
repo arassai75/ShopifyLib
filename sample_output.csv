@@ -1,0 +1,6 @@
+ProductID,ImageURL,ShopifyGUID,Status,ErrorMessage
+1001,https://httpbin.org/image/jpeg,gid://shopify/MediaImage/31564753404081,Success,
+1002,https://httpbin.org/image/png,gid://shopify/MediaImage/31564753436849,Success,
+1003,https://httpbin.org/image/webp,gid://shopify/MediaImage/31564753502385,Success,
+1004,https://httpbin.org/image/svg,gid://shopify/MediaImage/31564753535153,Success,
+1005,https://httpbin.org/image/jpeg?size=800x600,gid://shopify/MediaImage/31564753797297,Success,

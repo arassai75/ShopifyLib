@@ -1,0 +1,124 @@
+image: mcr.microsoft.com/dotnet/sdk:9.0
+
+definitions:
+  caches:
+    nuget: ~/.nuget/packages
+    dotnet: ~/.dotnet
+
+pipelines:
+  default:
+    - step:
+        name: Build and Test
+        caches:
+          - nuget
+          - dotnet
+        script:
+          # Restore dependencies
+          - dotnet restore ShopifyLib.sln
+          
+          # Build the solution
+          - dotnet build ShopifyLib.sln --configuration Release --no-restore
+          
+          # Run tests
+          - dotnet test tests/ShopifyLib.Tests/ShopifyLib.Tests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+          
+          # Generate coverage report
+          - dotnet tool install --global dotnet-reportgenerator-globaltool
+          - reportgenerator -reports:"./coverage/**/coverage.cobertura.xml" -targetdir:"./coverage/report" -reporttypes:Html
+        artifacts:
+          - coverage/**
+        after-script:
+          - echo "Build and test completed successfully"
+    
+    - step:
+        name: Package
+        caches:
+          - nuget
+          - dotnet
+        script:
+          # Create NuGet package
+          - dotnet pack src/ShopifyLib/ShopifyLib.csproj --configuration Release --output ./packages --no-build
+          
+          # List created packages
+          - ls -la ./packages
+        artifacts:
+          - packages/**
+        after-script:
+          - echo "Packaging completed successfully"
+
+  branches:
+    develop:
+      - step:
+          name: Build and Test (Develop)
+          caches:
+            - nuget
+            - dotnet
+          script:
+            - dotnet restore ShopifyLib.sln
+            - dotnet build ShopifyLib.sln --configuration Debug --no-restore
+            - dotnet test tests/ShopifyLib.Tests/ShopifyLib.Tests.csproj --configuration Debug --no-build --verbosity normal
+          after-script:
+            - echo "Develop branch build completed"
+
+    main:
+      - step:
+          name: Build and Test (Main)
+          caches:
+            - nuget
+            - dotnet
+          script:
+            - dotnet restore ShopifyLib.sln
+            - dotnet build ShopifyLib.sln --configuration Release --no-restore
+            - dotnet test tests/ShopifyLib.Tests/ShopifyLib.Tests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+            - dotnet tool install --global dotnet-reportgenerator-globaltool
+            - reportgenerator -reports:"./coverage/**/coverage.cobertura.xml" -targetdir:"./coverage/report" -reporttypes:Html
+          artifacts:
+            - coverage/**
+          after-script:
+            - echo "Main branch build completed"
+      
+      - step:
+          name: Package and Deploy (Main)
+          caches:
+            - nuget
+            - dotnet
+          script:
+            # Create NuGet package with version
+            - dotnet pack src/ShopifyLib/ShopifyLib.csproj --configuration Release --output ./packages --no-build
+            - ls -la ./packages
+          artifacts:
+            - packages/**
+          after-script:
+            - echo "Main branch packaging completed"
+
+  pull-requests:
+    '**':
+      - step:
+          name: Build and Test (PR)
+          caches:
+            - nuget
+            - dotnet
+          script:
+            - dotnet restore ShopifyLib.sln
+            - dotnet build ShopifyLib.sln --configuration Release --no-restore
+            - dotnet test tests/ShopifyLib.Tests/ShopifyLib.Tests.csproj --configuration Release --no-build --verbosity normal
+          after-script:
+            - echo "Pull request build completed"
+
+  custom:
+    nightly-build:
+      - step:
+          name: Nightly Build and Test
+          caches:
+            - nuget
+            - dotnet
+          script:
+            - dotnet restore ShopifyLib.sln
+            - dotnet build ShopifyLib.sln --configuration Release --no-restore
+            - dotnet test tests/ShopifyLib.Tests/ShopifyLib.Tests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+            - dotnet tool install --global dotnet-reportgenerator-globaltool
+            - reportgenerator -reports:"./coverage/**/coverage.cobertura.xml" -targetdir:"./coverage/report" -reporttypes:Html
+          artifacts:
+            - coverage/**
+          after-script:
+            - echo "Nightly build completed" 
