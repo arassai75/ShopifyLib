@@ -2,12 +2,12 @@
 
 ## Overview
 
-The `StagedUploadTest` class provides comprehensive testing for Shopify's staged upload functionality, which is designed to bypass URL download issues that commonly occur when uploading images from external CDNs like Indigo Images.
+The `StagedUploadTest` class provides comprehensive testing for Shopify's staged upload functionality, which is designed to bypass URL download issues that commonly occur when uploading images from external CDNs like  Images.
 
 ## Purpose
 
 This test suite addresses the following key challenges:
-- **CDN Download Limitations**: Many external CDNs (like Indigo Images) have restrictions that prevent Shopify's standard image upload from working
+- **CDN Download Limitations**: Many external CDNs (like  Images) have restrictions that prevent Shopify's standard image upload from working
 - **User-Agent Requirements**: Some CDNs require specific User-Agent headers for successful downloads
 - **Timeout Issues**: Large images or slow CDNs can cause upload timeouts
 - **Batch Upload Support**: Testing multiple file uploads in a single operation
@@ -33,23 +33,23 @@ The test uses a hybrid configuration approach:
 
 ## Test Methods
 
-### 1. `UploadIndigoImage_WithStagedUpload_SuccessfullyBypassesDownloadIssues()`
+### 1. `UploadImage_WithStagedUpload_SuccessfullyBypassesDownloadIssues()`
 
-**Purpose**: Demonstrates how staged upload can bypass URL download issues with Indigo Images CDN.
+**Purpose**: Demonstrates how staged upload can bypass URL download issues with  Images CDN.
 
 **Key Features**:
 - Downloads image with custom User-Agent header
-- Implements fallback to Cloudinary demo image if Indigo fails
+- Implements fallback to Cloudinary demo image if  fails
 - Uses staged upload approach for direct file upload
 - Handles both download and upload timeouts
 
 **Test Flow**:
 1. **Download Phase**: Downloads image with User-Agent header
-2. **Fallback Logic**: Switches to Cloudinary if Indigo fails
+2. **Fallback Logic**: Switches to Cloudinary if  fails
 3. **Upload Phase**: Uses staged upload to bypass Shopify's CDN limitations
 4. **Validation**: Verifies file ID, status, and image properties
 
-### 2. `UploadIndigoImage_FromUrl_WithStagedUpload_SuccessfullyBypassesDownloadIssues()`
+### 2. `UploadImage_FromUrl_WithStagedUpload_SuccessfullyBypassesDownloadIssues()`
 
 **Purpose**: Tests the convenience method that handles both download and upload in one operation.
 
@@ -148,9 +148,9 @@ The test uses a hybrid configuration approach:
 - Validates processing pipeline
 - Demonstrates dashboard integration
 
-### 12. `DownloadIndigoImage_AndLogBytes()`
+### 12. `DownloadImage_AndLogBytes()`
 
-**Purpose**: Debugging test for Indigo image download issues.
+**Purpose**: Debugging test for  image download issues.
 
 **Features**:
 - Downloads and logs image bytes
@@ -158,9 +158,9 @@ The test uses a hybrid configuration approach:
 - Validates image integrity
 - Provides debugging information
 
-### 13. `DownloadIndigoImage_AndShowInBrowser()`
+### 13. `DownloadImage_AndShowInBrowser()`
 
-**Purpose**: Tests browser-compatible download of Indigo images.
+**Purpose**: Tests browser-compatible download of  images.
 
 **Features**:
 - Simulates browser download
@@ -168,12 +168,12 @@ The test uses a hybrid configuration approach:
 - Validates image accessibility
 - Tests cross-platform compatibility
 
-### 14. `DownloadIndigoImage_AndUploadToShopifyStaged()`
+### 14. `DownloadImage_AndUploadToShopifyStaged()`
 
 **Purpose**: Complete workflow test from download to staged upload.
 
 **Features**:
-- Downloads from Indigo with proper headers
+- Downloads from  with proper headers
 - Uploads to Shopify using staged upload
 - Validates complete workflow
 - Tests error recovery

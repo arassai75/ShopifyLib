@@ -38,9 +38,9 @@ namespace ShopifyLib.Tests
         [Fact]
         public async Task Diagnostic_CheckGraphQLResponse_IdentifyMissingURLs()
         {
-            // Arrange - Use the specified Indigo image URL
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - Diagnostic Test";
+            // Arrange - Use the specified  image URL
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - Diagnostic Test";
             
             Console.WriteLine("=== DIAGNOSTIC IMAGE UPLOAD TEST ===");
             Console.WriteLine("This test will help identify why URLs aren't appearing");

@@ -355,9 +355,9 @@ namespace ShopifyLib.Tests
             }
 
             var result = new byte[jpegHeader.Length + colorData.Length + jpegFooter.Length];
-            Array.Copy(jpegHeader, FileContentType.Image, 0, result, 0, jpegHeader.Length);
-            Array.Copy(colorData, FileContentType.Image, 0, result, jpegHeader.Length, colorData.Length);
-            Array.Copy(jpegFooter, FileContentType.Image, 0, result, jpegHeader.Length + colorData.Length, jpegFooter.Length);
+            Array.Copy(jpegHeader, 0, result, 0, jpegHeader.Length);
+            Array.Copy(colorData, 0, result, jpegHeader.Length, colorData.Length);
+            Array.Copy(jpegFooter, 0, result, jpegHeader.Length + colorData.Length, jpegFooter.Length);
 
             return result;
         }

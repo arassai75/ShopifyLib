@@ -47,13 +47,13 @@ namespace ShopifyLib.Tests
         }
 
         [Fact]
-        public async Task UploadIndigoImage_WithStagedUpload_SuccessfullyBypassesDownloadIssues()
+        public async Task UploadImage_WithStagedUpload_SuccessfullyBypassesDownloadIssues()
         {
             // Arrange
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var fileName = "indigo-gift-image.jpg";
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var fileName = "-gift-image.jpg";
             var contentType = "image/jpeg";
-            var altText = "Indigo Gift Image - Staged Upload Test";
+            var altText = " Gift Image - Staged Upload Test";
 
             Console.WriteLine("=== STAGED UPLOAD TEST ===");
             Console.WriteLine("This test demonstrates how staged upload can bypass URL download issues");
@@ -65,7 +65,7 @@ namespace ShopifyLib.Tests
 
             try
             {
-                // Step 1: Download image with User-Agent (to handle Indigo's requirements)
+                // Step 1: Download image with User-Agent (to handle 's requirements)
                 Console.WriteLine("📥 Step 1: Downloading image with User-Agent header...");
                 
                 using var httpClient = new HttpClient();
@@ -87,7 +87,7 @@ namespace ShopifyLib.Tests
                     var fallbackUrl = "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg";
                     imageBytes = await httpClient.GetByteArrayAsync(fallbackUrl);
                     Console.WriteLine($"✅ Fallback download successful! Size: {imageBytes.Length} bytes");
-                    Console.WriteLine($"📝 Note: Using Cloudinary fallback instead of Indigo due to connection issues");
+                    Console.WriteLine($"📝 Note: Using Cloudinary fallback instead of  due to connection issues");
                 }
                 catch (TaskCanceledException ex)
                 {
@@ -98,7 +98,7 @@ namespace ShopifyLib.Tests
                     var fallbackUrl = "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg";
                     imageBytes = await httpClient.GetByteArrayAsync(fallbackUrl);
                     Console.WriteLine($"✅ Fallback download successful! Size: {imageBytes.Length} bytes");
-                    Console.WriteLine($"📝 Note: Using Cloudinary fallback instead of Indigo due to timeout");
+                    Console.WriteLine($"📝 Note: Using Cloudinary fallback instead of  due to timeout");
                 }
 
                 // Step 2: Upload using staged upload approach
@@ -131,7 +131,7 @@ namespace ShopifyLib.Tests
                 }
 
                 Console.WriteLine();
-                Console.WriteLine("✅ Indigo image successfully uploaded using staged upload!");
+                Console.WriteLine("✅  image successfully uploaded using staged upload!");
                 Console.WriteLine("💡 This approach bypasses Shopify's CDN download limitations");
                 Console.WriteLine("💡 The file was uploaded directly to Shopify's servers");
             }
@@ -144,13 +144,13 @@ namespace ShopifyLib.Tests
         }
 
         [Fact]
-        public async Task UploadIndigoImage_FromUrl_WithStagedUpload_SuccessfullyBypassesDownloadIssues()
+        public async Task UploadImage_FromUrl_WithStagedUpload_SuccessfullyBypassesDownloadIssues()
         {
             // Arrange
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var fileName = "indigo-gift-image-from-url.jpg";
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var fileName = "-gift-image-from-url.jpg";
             var contentType = "image/jpeg";
-            var altText = "Indigo Gift Image - URL Staged Upload Test";
+            var altText = " Gift Image - URL Staged Upload Test";
             var userAgent = "Mozilla/5.0 (compatible; Shopify-Image-Uploader/1.0)";
 
             Console.WriteLine("=== STAGED UPLOAD FROM URL TEST ===");
@@ -195,7 +195,7 @@ namespace ShopifyLib.Tests
                 }
 
                 Console.WriteLine();
-                Console.WriteLine("✅ Indigo image successfully uploaded using staged upload from URL!");
+                Console.WriteLine("✅  image successfully uploaded using staged upload from URL!");
                 Console.WriteLine("💡 This approach handles both download and upload in one method");
                 Console.WriteLine("💡 User-Agent is automatically applied during download");
             }
@@ -211,8 +211,8 @@ namespace ShopifyLib.Tests
         public async Task CompareApproaches_StagedUploadVsDirect_ShowsAdvantages()
         {
             // Arrange
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - Comparison Test";
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - Comparison Test";
 
             Console.WriteLine("=== STAGED UPLOAD VS DIRECT UPLOAD COMPARISON ===");
             Console.WriteLine("This test compares staged upload vs direct URL upload");
@@ -238,7 +238,7 @@ namespace ShopifyLib.Tests
                 catch (Exception ex)
                 {
                     Console.WriteLine($"❌ Direct upload failed: {ex.Message}");
-                    Console.WriteLine("   This confirms Shopify's CDN cannot download from Indigo without User-Agent");
+                    Console.WriteLine("   This confirms Shopify's CDN cannot download from  without User-Agent");
                 }
 
                 Console.WriteLine();
@@ -249,7 +249,7 @@ namespace ShopifyLib.Tests
                 {
                     var stagedResponse = await _stagedUploadService.UploadFileFromUrlAsync(
                         imageUrl,
-                        "indigo-gift-image-staged.jpg",
+                        "-gift-image-staged.jpg",
                         "image/jpeg",
                         $"{altText} - Staged",
                         "Mozilla/5.0 (compatible; Shopify-Image-Uploader/1.0)"
@@ -268,7 +268,7 @@ namespace ShopifyLib.Tests
                 Console.WriteLine("📊 Comparison Results:");
                 Console.WriteLine("   • Direct URL upload: Likely fails due to missing User-Agent");
                 Console.WriteLine("   • Staged upload: Works with proper User-Agent and direct file upload");
-                Console.WriteLine("   • Recommendation: Use staged upload for problematic URLs like Indigo");
+                Console.WriteLine("   • Recommendation: Use staged upload for problematic URLs like ");
             }
             catch (Exception ex)
             {
@@ -892,16 +892,16 @@ namespace ShopifyLib.Tests
         }
 
         [Fact]
-        public async Task DownloadIndigoImage_AndLogBytes()
+        public async Task DownloadImage_AndLogBytes()
         {
-            // Indigo public image URL
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            Console.WriteLine("=== INDIGO IMAGE DOWNLOAD TEST ===");
+            //  public image URL
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            Console.WriteLine("===  IMAGE DOWNLOAD TEST ===");
             Console.WriteLine($"Image URL: {imageUrl}");
             try
             {
                 using var httpClient = new HttpClient();
-                // Add comprehensive browser-like headers to satisfy Akamai/Indigo
+                // Add comprehensive browser-like headers to satisfy Akamai/
                 httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
                 httpClient.DefaultRequestHeaders.Accept.ParseAdd("image/webp,image/apng,image/*,*/*;q=0.8");
                 httpClient.DefaultRequestHeaders.AcceptLanguage.ParseAdd("en-US,en;q=0.9");
@@ -913,28 +913,28 @@ namespace ShopifyLib.Tests
                 httpClient.DefaultRequestHeaders.Add("Sec-Fetch-Site", "cross-site");
                 httpClient.Timeout = TimeSpan.FromSeconds(30);
                 var imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
-                Console.WriteLine($"✅ Downloaded Indigo image! Size: {imageBytes.Length} bytes");
+                Console.WriteLine($"✅ Downloaded  image! Size: {imageBytes.Length} bytes");
                 // Show a short hex preview
                 var hexPreview = BitConverter.ToString(imageBytes.Take(32).ToArray()).Replace("-", " ");
                 Console.WriteLine($"Hex preview (first 32 bytes): {hexPreview}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Failed to download Indigo image: {ex.Message}");
+                Console.WriteLine($"❌ Failed to download  image: {ex.Message}");
             }
         }
 
         [Fact]
-        public async Task DownloadIndigoImage_AndShowInBrowser()
+        public async Task DownloadImage_AndShowInBrowser()
         {
-            // Indigo public image URL
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            Console.WriteLine("=== INDIGO IMAGE BROWSER VIEW TEST ===");
+            //  public image URL
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            Console.WriteLine("===  IMAGE BROWSER VIEW TEST ===");
             Console.WriteLine($"Image URL: {imageUrl}");
             try
             {
                 using var httpClient = new HttpClient();
-                // Add comprehensive browser-like headers to satisfy Akamai/Indigo
+                // Add comprehensive browser-like headers to satisfy Akamai/
                 httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
                 httpClient.DefaultRequestHeaders.Accept.ParseAdd("image/webp,image/apng,image/*,*/*;q=0.8");
                 httpClient.DefaultRequestHeaders.AcceptLanguage.ParseAdd("en-US,en;q=0.9");
@@ -947,7 +947,7 @@ namespace ShopifyLib.Tests
                 httpClient.Timeout = TimeSpan.FromSeconds(30);
                 
                 var imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
-                Console.WriteLine($"✅ Downloaded Indigo image! Size: {imageBytes.Length} bytes");
+                Console.WriteLine($"✅ Downloaded  image! Size: {imageBytes.Length} bytes");
                 
                 // Convert to base64 data URL for browser viewing
                 var base64Data = Convert.ToBase64String(imageBytes);
@@ -981,31 +981,31 @@ namespace ShopifyLib.Tests
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Failed to download Indigo image: {ex.Message}");
+                Console.WriteLine($"❌ Failed to download  image: {ex.Message}");
             }
         }
 
         [Fact]
-        public async Task DownloadIndigoImage_AndUploadToShopifyStaged()
+        public async Task DownloadImage_AndUploadToShopifyStaged()
         {
-            // Indigo public image URL
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            Console.WriteLine("=== INDIGO IMAGE TO SHOPIFY STAGED UPLOAD TEST ===");
+            //  public image URL
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            Console.WriteLine("===  IMAGE TO SHOPIFY STAGED UPLOAD TEST ===");
             Console.WriteLine($"Image URL: {imageUrl}");
             
             try
             {
                 // Step 1: Download image into memory
-                Console.WriteLine("\n1. Downloading image from Indigo...");
+                Console.WriteLine("\n1. Downloading image from ...");
                 byte[] imageBytes;
                 using (var downloadClient = new HttpClient())
                 {
-                    // Add comprehensive browser-like headers to satisfy Akamai/Indigo
+                    // Add comprehensive browser-like headers to satisfy Akamai/
                     downloadClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
                     downloadClient.DefaultRequestHeaders.Accept.ParseAdd("image/webp,image/apng,image/*,*/*;q=0.8");
                     downloadClient.DefaultRequestHeaders.AcceptLanguage.ParseAdd("en-US,en;q=0.9");
                     downloadClient.DefaultRequestHeaders.AcceptEncoding.ParseAdd("gzip, deflate, br");
-                    downloadClient.DefaultRequestHeaders.Add("Referer", "https://www.indigo.ca/");
+                    downloadClient.DefaultRequestHeaders.Add("Referer", "https://www..ca/");
                     downloadClient.DefaultRequestHeaders.Add("sec-ch-ua", "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"");
                     downloadClient.DefaultRequestHeaders.Add("sec-ch-ua-mobile", "?0");
                     downloadClient.DefaultRequestHeaders.Add("sec-ch-ua-platform", "\"macOS\"");
@@ -1049,7 +1049,7 @@ namespace ShopifyLib.Tests
                     {
                         new
                         {
-                            filename = "indigo-image.webp",
+                            filename = "-image.webp",
                             mimeType = "image/webp",
                             resource = "FILE"
                         }
@@ -1112,7 +1112,7 @@ namespace ShopifyLib.Tests
                     }
                     
                     // Add the file
-                    multipartContent.Add(new ByteArrayContent(imageBytes), "file", "indigo-image.webp");
+                    multipartContent.Add(new ByteArrayContent(imageBytes), "file", "-image.webp");
                     
                     var uploadResponse = await uploadClient.PostAsync(uploadUrl, multipartContent);
                     var uploadResponseContent = await uploadResponse.Content.ReadAsStringAsync();

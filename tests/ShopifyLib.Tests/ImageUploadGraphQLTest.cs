@@ -36,11 +36,11 @@ namespace ShopifyLib.Tests
         }
 
         [Fact]
-        public async Task UploadIndigoImageToShopify_DisplayAllResponseDetails()
+        public async Task UploadImageToShopify_DisplayAllResponseDetails()
         {
-            // Arrange - Use the specified Indigo image URL
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - Test Upload";
+            // Arrange - Use the specified  image URL
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - Test Upload";
             
             Console.WriteLine("=== Starting Image Upload Test ===");
             Console.WriteLine($"Image URL: {imageUrl}");

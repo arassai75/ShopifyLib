@@ -36,10 +36,10 @@ namespace ShopifyLib.Tests
         }
 
         [Fact]
-        public async Task HybridApproach_IndigoURL_GraphQLAndCDN()
+        public async Task HybridApproach_URL_GraphQLAndCDN()
         {
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419407182/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - Hybrid Approach Test";
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419407182/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - Hybrid Approach Test";
 
             Console.WriteLine("=== HYBRID APPROACH TEST ===");
             Console.WriteLine("Combining GraphQL file management with immediate CDN URL access");

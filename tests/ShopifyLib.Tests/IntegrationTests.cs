@@ -364,7 +364,7 @@ namespace ShopifyLib.Tests
             // Arrange - Create a test product
             var testProduct = new Product
             {
-                Title = $"Indigo Test Product {DateTime.UtcNow:yyyyMMddHHmmss}",
+                Title = $" Test Product {DateTime.UtcNow:yyyyMMddHHmmss}",
                 BodyHtml = "<p>This product was created via the Shopify library with an uploaded image. You should see this product in your Shopify dashboard!</p>",
                 Vendor = "Shopify Library Test",
                 ProductType = "Test Product",

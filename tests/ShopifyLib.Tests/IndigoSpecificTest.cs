@@ -11,11 +11,11 @@ using Newtonsoft.Json;
 namespace ShopifyLib.Tests
 {
     [IntegrationTest]
-    public class IndigoSpecificTest : IDisposable
+    public class SpecificTest : IDisposable
     {
         private readonly ShopifyClient _client;
 
-        public IndigoSpecificTest()
+        public SpecificTest()
         {
             // Load configuration from appsettings.json
             var configuration = new ConfigurationBuilder()
@@ -36,15 +36,15 @@ namespace ShopifyLib.Tests
         }
 
         [Fact]
-        public async Task UploadSpecificIndigoImage_MultipleApproaches_GetCDNUrl()
+        public async Task UploadSpecificImage_MultipleApproaches_GetCDNUrl()
         {
-            // Arrange - Use the EXACT Indigo image URL you specified
-            var indigoImageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - Specific Test";
+            // Arrange - Use the EXACT  image URL you specified
+            var ImageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - Specific Test";
             
-            Console.WriteLine("=== SPECIFIC INDIGO IMAGE UPLOAD TEST ===");
-            Console.WriteLine("This test tries to upload the EXACT Indigo image URL you specified");
-            Console.WriteLine($"Target Image URL: {indigoImageUrl}");
+            Console.WriteLine("=== SPECIFIC  IMAGE UPLOAD TEST ===");
+            Console.WriteLine("This test tries to upload the EXACT  image URL you specified");
+            Console.WriteLine($"Target Image URL: {ImageUrl}");
             Console.WriteLine($"Alt Text: {altText}");
             Console.WriteLine();
 
@@ -54,7 +54,7 @@ namespace ShopifyLib.Tests
             {
                 var fileInput = new FileCreateInput
                 {
-                    OriginalSource = indigoImageUrl,
+                    OriginalSource = ImageUrl,
                     ContentType = FileContentType.Image,
                     Alt = altText
                 };
@@ -84,8 +84,8 @@ namespace ShopifyLib.Tests
             
             var tempProduct = new Product
             {
-                Title = $"Temp Product for Indigo Test {DateTime.UtcNow:yyyyMMddHHmmss}",
-                BodyHtml = "<p>Temporary product for testing Indigo image</p>",
+                Title = $"Temp Product for  Test {DateTime.UtcNow:yyyyMMddHHmmss}",
+                BodyHtml = "<p>Temporary product for testing  image</p>",
                 Vendor = "Test Vendor",
                 ProductType = "Test Type",
                 Status = "draft",
@@ -99,7 +99,7 @@ namespace ShopifyLib.Tests
             {
                 var restImage = await _client.Images.UploadImageFromUrlAsync(
                     createdProduct.Id,
-                    indigoImageUrl,
+                    ImageUrl,
                     altText,
                     1
                 );
@@ -111,14 +111,14 @@ namespace ShopifyLib.Tests
                 Console.WriteLine($"📅 Created: {restImage.CreatedAt}");
                 
                 Console.WriteLine();
-                Console.WriteLine("🎉 SUCCESS: Indigo image uploaded via REST API!");
+                Console.WriteLine("🎉 SUCCESS:  image uploaded via REST API!");
                 Console.WriteLine($"🌐 Use this CDN URL: {restImage.Src}");
-                Console.WriteLine("📋 This should be the EXACT Indigo image you specified");
+                Console.WriteLine("📋 This should be the EXACT  image you specified");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"❌ REST upload failed: {ex.Message}");
-                Console.WriteLine("💡 This confirms the timeout issue with the Indigo URL");
+                Console.WriteLine("💡 This confirms the timeout issue with the  URL");
             }
             finally
             {
@@ -135,8 +135,8 @@ namespace ShopifyLib.Tests
                 using var httpClient = new System.Net.Http.HttpClient();
                 httpClient.Timeout = TimeSpan.FromMinutes(3); // Extended timeout
                 
-                Console.WriteLine("🔄 Downloading image from Indigo URL...");
-                var imageBytes = await httpClient.GetByteArrayAsync(indigoImageUrl);
+                Console.WriteLine("🔄 Downloading image from  URL...");
+                var imageBytes = await httpClient.GetByteArrayAsync(ImageUrl);
                 Console.WriteLine($"✅ Downloaded {imageBytes.Length} bytes");
                 
                 // Convert to base64 and upload
@@ -162,13 +162,13 @@ namespace ShopifyLib.Tests
                 }
                 
                 Console.WriteLine();
-                Console.WriteLine("🎉 SUCCESS: Indigo image uploaded via download method!");
-                Console.WriteLine("💡 This should be the EXACT Indigo image you specified");
+                Console.WriteLine("🎉 SUCCESS:  image uploaded via download method!");
+                Console.WriteLine("💡 This should be the EXACT  image you specified");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"❌ Download approach failed: {ex.Message}");
-                Console.WriteLine("💡 The Indigo URL is not accessible from our servers");
+                Console.WriteLine("💡 The  URL is not accessible from our servers");
             }
 
             // Approach 4: Try without query parameters
@@ -176,7 +176,7 @@ namespace ShopifyLib.Tests
             Console.WriteLine("🔄 APPROACH 4: Try without query parameters...");
             try
             {
-                var baseUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg";
+                var baseUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg";
                 Console.WriteLine($"🔄 Trying base URL: {baseUrl}");
                 
                 var baseFileInput = new FileCreateInput
@@ -207,10 +207,10 @@ namespace ShopifyLib.Tests
             // Summary
             Console.WriteLine();
             Console.WriteLine("=== FINAL SUMMARY ===");
-            Console.WriteLine("✅ Tested multiple approaches to upload the Indigo image");
+            Console.WriteLine("✅ Tested multiple approaches to upload the  image");
             Console.WriteLine("✅ If any approach succeeded, you should see the image in your dashboard");
-            Console.WriteLine("💡 The image should be the EXACT Indigo gift image you specified");
-            Console.WriteLine("💡 If all approaches failed, the Indigo URL has accessibility issues");
+            Console.WriteLine("💡 The image should be the EXACT  gift image you specified");
+            Console.WriteLine("💡 If all approaches failed, the  URL has accessibility issues");
         }
 
         public void Dispose()

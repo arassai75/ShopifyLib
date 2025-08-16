@@ -229,10 +229,10 @@ namespace ShopifyLib.Services
             // Known domains that require User-Agent
             var problematicDomains = new[]
             {
-                "indigoimages.ca",
-                "indigo.ca",
-                "dynamic.indigoimages.ca",
-                "images.indigo.ca"
+                "images.ca",
+                ".ca",
+                "dynamic.images.ca",
+                "images..ca"
             };
 
             return problematicDomains.Any(domain => lowerUrl.Contains(domain));

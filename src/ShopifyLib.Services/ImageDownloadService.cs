@@ -76,8 +76,8 @@ namespace ShopifyLib.Services
             var lowerUrl = imageUrl.ToLowerInvariant();
             
             // Known domains that often require User-Agent headers
-            return lowerUrl.Contains("indigoimages.ca") ||
-                   lowerUrl.Contains("dynamic.indigoimages.ca") ||
+            return lowerUrl.Contains("images.ca") ||
+                   lowerUrl.Contains("dynamic.images.ca") ||
                    lowerUrl.Contains("amazonaws.com") ||
                    lowerUrl.Contains("cloudfront.net") ||
                    lowerUrl.Contains("cdn.shopify.com") ||

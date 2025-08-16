@@ -38,9 +38,9 @@ namespace ShopifyLib.Tests
         [Fact]
         public async Task SimpleFileUpload_CheckAvailableFields()
         {
-            // Arrange - Use the specified Indigo image URL
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - Simple Test";
+            // Arrange - Use the specified  image URL
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - Simple Test";
             
             Console.WriteLine("=== SIMPLE GRAPHQL FILE UPLOAD TEST ===");
             Console.WriteLine("This test uses a simple GraphQL mutation to see what fields are available");

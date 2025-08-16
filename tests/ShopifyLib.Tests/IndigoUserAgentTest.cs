@@ -11,15 +11,15 @@ using Microsoft.Extensions.Configuration;
 namespace ShopifyLib.Tests
 {
     /// <summary>
-    /// Test for handling Indigo images that require User-Agent headers
+    /// Test for handling  images that require User-Agent headers
     /// </summary>
     [IntegrationTest]
-    public class IndigoUserAgentTest : IDisposable
+    public class UserAgentTest : IDisposable
     {
         private readonly ShopifyClient _client;
         private string? _uploadedFileId;
 
-        public IndigoUserAgentTest()
+        public UserAgentTest()
         {
             // Load configuration from appsettings.json and environment variables
             var configuration = new ConfigurationBuilder()
@@ -39,14 +39,14 @@ namespace ShopifyLib.Tests
         }
 
         [Fact]
-        public async Task UploadIndigoImage_WithUserAgent_DownloadAndUploadSuccessfully()
+        public async Task UploadImage_WithUserAgent_DownloadAndUploadSuccessfully()
         {
             // Arrange
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - User-Agent Test";
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - User-Agent Test";
 
-            Console.WriteLine("=== INDIGO USER-AGENT TEST ===");
-            Console.WriteLine("This test downloads the Indigo image with proper User-Agent and uploads to Shopify");
+            Console.WriteLine("===  USER-AGENT TEST ===");
+            Console.WriteLine("This test downloads the  image with proper User-Agent and uploads to Shopify");
             Console.WriteLine($"Image URL: {imageUrl}");
             Console.WriteLine($"Alt Text: {altText}");
             Console.WriteLine();
@@ -69,7 +69,7 @@ namespace ShopifyLib.Tests
                 catch (HttpRequestException ex)
                 {
                     Console.WriteLine($"❌ Download failed: {ex.Message}");
-                    Console.WriteLine("This confirms that Indigo requires a User-Agent header");
+                    Console.WriteLine("This confirms that  requires a User-Agent header");
                     throw;
                 }
 
@@ -106,7 +106,7 @@ namespace ShopifyLib.Tests
                 }
 
                 Console.WriteLine();
-                Console.WriteLine("✅ Indigo image successfully uploaded with User-Agent workaround!");
+                Console.WriteLine("✅  image successfully uploaded with User-Agent workaround!");
                 Console.WriteLine("💡 This approach bypasses Shopify's CDN download limitations");
             }
             catch (Exception ex)
@@ -118,14 +118,14 @@ namespace ShopifyLib.Tests
         }
 
         [Fact]
-        public async Task CompareApproaches_IndigoImage_DemonstratesUserAgentIssue()
+        public async Task CompareApproaches_Image_DemonstratesUserAgentIssue()
         {
             // Arrange
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - Comparison Test";
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - Comparison Test";
 
-            Console.WriteLine("=== INDIGO APPROACH COMPARISON TEST ===");
-            Console.WriteLine("This test compares different approaches for uploading Indigo images");
+            Console.WriteLine("===  APPROACH COMPARISON TEST ===");
+            Console.WriteLine("This test compares different approaches for uploading  images");
             Console.WriteLine($"Image URL: {imageUrl}");
             Console.WriteLine();
 
@@ -148,7 +148,7 @@ namespace ShopifyLib.Tests
                 catch (Exception ex)
                 {
                     Console.WriteLine($"❌ Direct upload failed: {ex.Message}");
-                    Console.WriteLine("   This confirms Shopify's CDN cannot download from Indigo without User-Agent");
+                    Console.WriteLine("   This confirms Shopify's CDN cannot download from  without User-Agent");
                 }
 
                 Console.WriteLine();
@@ -186,7 +186,7 @@ namespace ShopifyLib.Tests
                 Console.WriteLine("📊 Comparison Results:");
                 Console.WriteLine("   • Direct URL upload: Likely fails due to missing User-Agent");
                 Console.WriteLine("   • Download + Base64 upload: Works with proper User-Agent");
-                Console.WriteLine("   • Recommendation: Use download + base64 approach for Indigo images");
+                Console.WriteLine("   • Recommendation: Use download + base64 approach for  images");
             }
             catch (Exception ex)
             {

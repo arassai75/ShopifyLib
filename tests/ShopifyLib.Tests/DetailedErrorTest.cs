@@ -39,10 +39,10 @@ namespace ShopifyLib.Tests
         }
 
         [Fact]
-        public async Task CaptureDetailedErrors_IndigoImage_ShowAllValidationIssues()
+        public async Task CaptureDetailedErrors_Image_ShowAllValidationIssues()
         {
             // Arrange - Use the sample image URL
-            //var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            //var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
             var imageUrl = "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg";
             var altText = "Sample Image - Error Test";
             
@@ -280,7 +280,7 @@ namespace ShopifyLib.Tests
                         {
                             OriginalSource = $"data:image/jpeg;base64,{base64Image}",
                             ContentType = FileContentType.Image,
-                            Alt = "Downloaded Indigo Image"
+                            Alt = "Downloaded  Image"
                         };
                         
                         var uploadResponse = await _client.Files.UploadFilesAsync(new List<FileCreateInput> { fileInput });

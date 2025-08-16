@@ -168,9 +168,9 @@ namespace ConsoleApp
             Console.WriteLine("📸 Uploading image using GraphQL...");
             try
             {
-                // Use the specified Indigo image URL
-                var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-                var altText = "Indigo Gift Image - Console Demo";
+                // Use the specified  image URL
+                var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+                var altText = " Gift Image - Console Demo";
 
                 Console.WriteLine($"📸 Image URL: {imageUrl}");
                 Console.WriteLine($"📝 Alt Text: {altText}");

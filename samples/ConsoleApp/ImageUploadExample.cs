@@ -40,9 +40,9 @@ namespace ConsoleApp
             Console.WriteLine("and displays all response details including dimensions.");
             Console.WriteLine();
 
-            // Use the specified Indigo image URL
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - Console Example";
+            // Use the specified  image URL
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - Console Example";
 
             Console.WriteLine($"📸 Image URL: {imageUrl}");
             Console.WriteLine($"📝 Alt Text: {altText}");

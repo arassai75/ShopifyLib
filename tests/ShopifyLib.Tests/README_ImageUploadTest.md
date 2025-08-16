@@ -6,7 +6,7 @@ This test demonstrates uploading an image to Shopify using the GraphQL `fileCrea
 
 The test fulfills the following requirements:
 
-1. ✅ **Uses the specified image URL**: `https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85`
+1. ✅ **Uses the specified image URL**: `https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85`
 2. ✅ **Uploads to Shopify without attaching to any product or variant**: Uses GraphQL `fileCreate` mutation
 3. ✅ **Displays all Shopify response details**: Shows complete JSON response, file ID, status, dimensions, etc.
 4. ✅ **Uses GraphQL service**: Leverages the `IGraphQLService` and `FileService` for upload
@@ -14,7 +14,7 @@ The test fulfills the following requirements:
 ## What the Test Does
 
 ### 1. Image Upload Process
-- Creates a `FileCreateInput` with the specified Indigo image URL
+- Creates a `FileCreateInput` with the specified  image URL
 - Uses `FileContentType.Image` to indicate it's an image file
 - Sets alt text for accessibility
 - Calls `_client.Files.UploadFilesAsync()` which uses GraphQL under the hood
@@ -68,7 +68,7 @@ The test displays comprehensive information about the uploaded file:
 #### Option 1: Run the Unit Test
 ```bash
 # From the tests/ShopifyLib.Tests directory
-dotnet test --filter "UploadIndigoImageToShopify_DisplayAllResponseDetails"
+dotnet test --filter "UploadImageToShopify_DisplayAllResponseDetails"
 ```
 
 #### Option 2: Run the Console Application
@@ -89,8 +89,8 @@ The test will output detailed information including:
 
 ```
 === Starting Image Upload Test ===
-Image URL: https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85
-Alt Text: Indigo Gift Image - Test Upload
+Image URL: https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85
+Alt Text:  Gift Image - Test Upload
 
 🔄 Uploading image to Shopify using GraphQL...
 ✅ Image upload completed successfully!
@@ -101,7 +101,7 @@ Alt Text: Indigo Gift Image - Test Upload
     {
       "id": "gid://shopify/MediaImage/123456789",
       "fileStatus": "READY",
-      "alt": "Indigo Gift Image - Test Upload",
+      "alt": " Gift Image - Test Upload",
       "createdAt": "2024-01-15T10:30:00Z",
       "image": {
         "width": 810,
@@ -115,7 +115,7 @@ Alt Text: Indigo Gift Image - Test Upload
 === UPLOADED FILE DETAILS ===
 📁 File ID: gid://shopify/MediaImage/123456789
 📊 File Status: READY
-📝 Alt Text: Indigo Gift Image - Test Upload
+📝 Alt Text:  Gift Image - Test Upload
 📅 Created At: 2024-01-15T10:30:00Z
 
 === IMAGE DIMENSIONS ===
@@ -125,7 +125,7 @@ Alt Text: Indigo Gift Image - Test Upload
 
 === SHOPIFY CDN URLS ===
 🌐 Shopify CDN URL: https://cdn.shopify.com/s/files/1/1234/5678/files/image.jpg
-🔗 Original Source: https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg
+🔗 Original Source: https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg
 🔄 Transformed Source: https://cdn.shopify.com/s/files/1/1234/5678/files/image.jpg
 📷 Primary Source: https://cdn.shopify.com/s/files/1/1234/5678/files/image.jpg
 

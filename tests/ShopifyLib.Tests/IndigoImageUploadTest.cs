@@ -11,11 +11,11 @@ using Newtonsoft.Json;
 namespace ShopifyLib.Tests
 {
     [IntegrationTest]
-    public class IndigoImageUploadTest : IDisposable
+    public class ImageUploadTest : IDisposable
     {
         private readonly ShopifyClient _client;
 
-        public IndigoImageUploadTest()
+        public ImageUploadTest()
         {
             // Load configuration from appsettings.json
             var configuration = new ConfigurationBuilder()
@@ -36,31 +36,31 @@ namespace ShopifyLib.Tests
         }
 
         [Fact]
-        public async Task TestIndigoImageUrl_IdentifyTimeoutIssue_ProvideSolutions()
+        public async Task TestImageUrl_IdentifyTimeoutIssue_ProvideSolutions()
         {
-            // Arrange - Use the original Indigo image URL
-            var indigoImageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - Original Test";
+            // Arrange - Use the original  image URL
+            var ImageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - Original Test";
             
-            Console.WriteLine("=== INDIGO IMAGE URL TEST ===");
-            Console.WriteLine("This test identifies the timeout issue with the Indigo URL and provides solutions");
-            Console.WriteLine($"Original Image URL: {indigoImageUrl}");
+            Console.WriteLine("===  IMAGE URL TEST ===");
+            Console.WriteLine("This test identifies the timeout issue with the  URL and provides solutions");
+            Console.WriteLine($"Original Image URL: {ImageUrl}");
             Console.WriteLine($"Alt Text: {altText}");
             Console.WriteLine();
 
-            // Test 1: Try the original Indigo URL
-            Console.WriteLine("🔄 TEST 1: Trying original Indigo URL...");
+            // Test 1: Try the original  URL
+            Console.WriteLine("🔄 TEST 1: Trying original  URL...");
             try
             {
                 var fileInput = new FileCreateInput
                 {
-                    OriginalSource = indigoImageUrl,
+                    OriginalSource = ImageUrl,
                     ContentType = FileContentType.Image,
                     Alt = altText
                 };
 
                 var response = await _client.Files.UploadFilesAsync(new List<FileCreateInput> { fileInput });
-                Console.WriteLine("✅ Indigo URL worked with GraphQL!");
+                Console.WriteLine("✅  URL worked with GraphQL!");
                 
                 var file = response.Files[0];
                 Console.WriteLine($"📁 File ID: {file.Id}");
@@ -68,17 +68,17 @@ namespace ShopifyLib.Tests
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Indigo URL failed with GraphQL: {ex.Message}");
+                Console.WriteLine($"❌  URL failed with GraphQL: {ex.Message}");
             }
 
-            // Test 2: Try Indigo URL with REST API
+            // Test 2: Try  URL with REST API
             Console.WriteLine();
-            Console.WriteLine("🔄 TEST 2: Trying Indigo URL with REST API...");
+            Console.WriteLine("🔄 TEST 2: Trying  URL with REST API...");
             
             var tempProduct = new Product
             {
-                Title = $"Temp Product for Indigo Test {DateTime.UtcNow:yyyyMMddHHmmss}",
-                BodyHtml = "<p>Temporary product for testing Indigo URL</p>",
+                Title = $"Temp Product for  Test {DateTime.UtcNow:yyyyMMddHHmmss}",
+                BodyHtml = "<p>Temporary product for testing  URL</p>",
                 Vendor = "Test Vendor",
                 ProductType = "Test Type",
                 Status = "draft",
@@ -92,20 +92,20 @@ namespace ShopifyLib.Tests
             {
                 var restImage = await _client.Images.UploadImageFromUrlAsync(
                     createdProduct.Id,
-                    indigoImageUrl,
+                    ImageUrl,
                     altText,
                     1
                 );
 
-                Console.WriteLine("✅ Indigo URL worked with REST API!");
+                Console.WriteLine("✅  URL worked with REST API!");
                 Console.WriteLine($"📁 Image ID: {restImage.Id}");
                 Console.WriteLine($"🌐 CDN URL: {restImage.Src}");
                 Console.WriteLine($"📏 Dimensions: {restImage.Width}x{restImage.Height}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Indigo URL failed with REST API: {ex.Message}");
-                Console.WriteLine("💡 This confirms the timeout issue with the Indigo URL");
+                Console.WriteLine($"❌  URL failed with REST API: {ex.Message}");
+                Console.WriteLine("💡 This confirms the timeout issue with the  URL");
             }
             finally
             {
@@ -211,7 +211,7 @@ namespace ShopifyLib.Tests
             // Summary and recommendations
             Console.WriteLine();
             Console.WriteLine("=== ISSUE ANALYSIS ===");
-            Console.WriteLine("❌ PROBLEM: The Indigo image URL is timing out when Shopify tries to download it");
+            Console.WriteLine("❌ PROBLEM: The  image URL is timing out when Shopify tries to download it");
             Console.WriteLine("💡 REASON: The URL might be slow, have access restrictions, or be temporarily unavailable");
             Console.WriteLine();
             Console.WriteLine("=== SOLUTIONS ===");

@@ -12,12 +12,12 @@ using Xunit;
 namespace ShopifyLib.Tests
 {
     [IntegrationTest]
-    public class GraphQLIndigoCDNTest : IDisposable
+    public class GraphQLCDNTest : IDisposable
     {
         private readonly ShopifyClient _client;
         private readonly HttpClient _httpClient;
 
-        public GraphQLIndigoCDNTest()
+        public GraphQLCDNTest()
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -38,12 +38,12 @@ namespace ShopifyLib.Tests
         }
 
         [Fact]
-        public async Task UploadIndigoImage_GraphQL_CDNUrl_BecomesAccessible()
+        public async Task UploadImage_GraphQL_CDNUrl_BecomesAccessible()
         {
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419407182/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - GraphQL CDN Test";
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419407182/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - GraphQL CDN Test";
 
-            Console.WriteLine("=== GRAPHQL INDIGO IMAGE UPLOAD - CDN URL TEST ===");
+            Console.WriteLine("=== GRAPHQL  IMAGE UPLOAD - CDN URL TEST ===");
             Console.WriteLine($"Image URL: {imageUrl}");
             Console.WriteLine($"Alt Text: {altText}");
             Console.WriteLine();

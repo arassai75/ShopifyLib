@@ -143,6 +143,7 @@ namespace ShopifyLib.Tests
             // Prepare image data for upload
             var imageData = csvRows.Select(row => (
                 row.ImageUrl,
+                FileContentType.Image,
                 row.ProductId,
                 row.Upc,
                 batchId,

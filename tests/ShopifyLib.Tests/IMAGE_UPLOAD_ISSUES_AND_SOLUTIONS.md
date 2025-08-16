@@ -3,15 +3,15 @@
 ## Issues Identified
 
 ### 1. Image URL Timeout Issue (Primary Problem)
-**Problem**: The specified Indigo image URL is timing out when Shopify tries to download it.
+**Problem**: The specified  image URL is timing out when Shopify tries to download it.
 
 **Error Message**: 
 ```
-Image upload failed with status UnprocessableEntity: {"errors":{"image":["Could not download image: [\"Image https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85 failed to download. - timeout reached. Make sure file can be downloaded successfully.\"]"]}}
+Image upload failed with status UnprocessableEntity: {"errors":{"image":["Could not download image: [\"Image https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85 failed to download. - timeout reached. Make sure file can be downloaded successfully.\"]"]}}
 ```
 
 **Root Cause**: 
-- The Indigo image URL is slow to respond or has access restrictions
+- The  image URL is slow to respond or has access restrictions
 - Shopify's servers timeout when trying to download the image
 - The URL might be temporarily unavailable or have rate limiting
 
@@ -40,7 +40,7 @@ I've created several diagnostic tests to identify the exact issues:
 2. **`SimpleGraphQLTest.cs`** - Tests basic vs enhanced GraphQL mutations
 3. **`RESTImageUploadTest.cs`** - Compares REST vs GraphQL approaches
 4. **`HybridImageUploadTest.cs`** - Combines both methods for best results
-5. **`IndigoImageUploadTest.cs`** - **NEW** - Specifically tests the Indigo URL timeout issue
+5. **`ImageUploadTest.cs`** - **NEW** - Specifically tests the  URL timeout issue
 
 ### Solution 2: Hybrid Approach (Recommended)
 The hybrid approach combines GraphQL and REST APIs:
@@ -105,9 +105,9 @@ cd tests/ShopifyLib.Tests
 dotnet test --filter "Diagnostic_CheckGraphQLResponse_IdentifyMissingURLs"
 ```
 
-### 2. Indigo URL Test (Primary Issue)
+### 2.  URL Test (Primary Issue)
 ```bash
-dotnet test --filter "TestIndigoImageUrl_IdentifyTimeoutIssue_ProvideSolutions"
+dotnet test --filter "TestImageUrl_IdentifyTimeoutIssue_ProvideSolutions"
 ```
 
 ### 3. Simple GraphQL Test
@@ -127,10 +127,10 @@ dotnet test --filter "HybridUpload_GetCDNUrl_EnsureDashboardVisibility"
 
 ## Expected Results
 
-### Indigo URL Issue (Primary Problem)
+###  URL Issue (Primary Problem)
 ```
-❌ Indigo URL failed with REST API: Image upload failed with status UnprocessableEntity: {"errors":{"image":["Could not download image: [\"Image https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85 failed to download. - timeout reached. Make sure file can be downloaded successfully.\"]"]}}
-💡 This confirms the timeout issue with the Indigo URL
+❌  URL failed with REST API: Image upload failed with status UnprocessableEntity: {"errors":{"image":["Could not download image: [\"Image https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85 failed to download. - timeout reached. Make sure file can be downloaded successfully.\"]"]}}
+💡 This confirms the timeout issue with the  URL
 ```
 
 ### Working Alternative URLs
@@ -231,7 +231,7 @@ Use the **Hybrid approach**:
 
 ## Conclusion
 
-The **primary issue** is that the Indigo image URL is timing out when Shopify tries to download it. This is a common problem with external image URLs that are slow or have access restrictions.
+The **primary issue** is that the  image URL is timing out when Shopify tries to download it. This is a common problem with external image URLs that are slow or have access restrictions.
 
 **Secondary issues** include GraphQL not immediately returning CDN URLs and images not appearing in the dashboard.
 

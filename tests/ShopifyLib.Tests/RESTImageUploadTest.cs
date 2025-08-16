@@ -38,9 +38,9 @@ namespace ShopifyLib.Tests
         [Fact]
         public async Task UploadImageViaREST_CompareWithGraphQL_GetCDNUrl()
         {
-            // Arrange - Use the specified Indigo image URL
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - REST Test";
+            // Arrange - Use the specified  image URL
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - REST Test";
             
             Console.WriteLine("=== REST vs GRAPHQL IMAGE UPLOAD COMPARISON ===");
             Console.WriteLine("This test compares REST API upload with GraphQL upload");

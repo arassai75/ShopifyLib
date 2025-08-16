@@ -38,12 +38,12 @@ namespace ShopifyLib.Tests
         [Fact]
         public async Task HybridUpload_GetCDNUrl_EnsureDashboardVisibility()
         {
-            // Arrange - Use the original Indigo image URL as specified
-            //var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg";
+            // Arrange - Use the original  image URL as specified
+            //var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg";
             var imageUrl = "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg";
-            var altText = "Indigo Gift Image - Hybrid Test";
+            var altText = " Gift Image - Hybrid Test";
             
-            Console.WriteLine("=== dynamic.indigoimages.ca IMAGE UPLOAD TEST ===");
+            Console.WriteLine("=== dynamic.images.ca IMAGE UPLOAD TEST ===");
             Console.WriteLine("This test combines GraphQL and REST to get CDN URL and ensure dashboard visibility");
             Console.WriteLine($"Image URL: {imageUrl}");
             Console.WriteLine($"Alt Text: {altText}");
@@ -242,7 +242,7 @@ namespace ShopifyLib.Tests
                 catch (Exception restEx)
                 {
                     Console.WriteLine($"❌ REST upload failed: {restEx.Message}");
-                    Console.WriteLine("💡 This confirms the Indigo URL timeout issue");
+                    Console.WriteLine("💡 This confirms the  URL timeout issue");
                     
                     // Try alternative approach: Download the image first, then upload
                     Console.WriteLine();
@@ -254,7 +254,7 @@ namespace ShopifyLib.Tests
                         using var httpClient = new System.Net.Http.HttpClient();
                         httpClient.Timeout = TimeSpan.FromMinutes(2); // Longer timeout
                         
-                        Console.WriteLine("🔄 Downloading image from Indigo URL...");
+                        Console.WriteLine("🔄 Downloading image from  URL...");
                         var imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
                         Console.WriteLine($"✅ Downloaded {imageBytes.Length} bytes");
                         
@@ -281,13 +281,13 @@ namespace ShopifyLib.Tests
                         }
                         
                         Console.WriteLine();
-                        Console.WriteLine("🎉 SUCCESS: Indigo image uploaded via download method!");
+                        Console.WriteLine("🎉 SUCCESS:  image uploaded via download method!");
                         Console.WriteLine("💡 This approach downloads the image first, then uploads to Shopify");
                     }
                     catch (Exception downloadEx)
                     {
                         Console.WriteLine($"❌ Download approach also failed: {downloadEx.Message}");
-                        Console.WriteLine("💡 The Indigo URL is not accessible from our servers either");
+                        Console.WriteLine("💡 The  URL is not accessible from our servers either");
                         Console.WriteLine("💡 Consider using a different image URL or hosting the image elsewhere");
                     }
                     

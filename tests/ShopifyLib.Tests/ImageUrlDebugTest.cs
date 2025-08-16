@@ -92,6 +92,7 @@ namespace ShopifyLib.Tests
             {
                 (
                     "https://via.placeholder.com/800x600/FF0000/FFFFFF?text=DEBUG+TEST",
+                    FileContentType.Image,
                     999999999,
                     "123456789012",
                     "debug_test_batch",

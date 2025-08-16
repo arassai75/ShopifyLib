@@ -98,7 +98,7 @@ export AZURE_FUNCTION_URL="https://image-proxy-function.azurewebsites.net/api/Im
 
 ```bash
 cd tests/ShopifyLib.Tests
-dotnet test --filter "CompleteEndToEndFlow_IndigoToShopify" --verbosity normal
+dotnet test --filter "CompleteEndToEndFlow_ToShopify" --verbosity normal
 ```
 
 ### Test the Azure Function Directly
@@ -107,9 +107,9 @@ dotnet test --filter "CompleteEndToEndFlow_IndigoToShopify" --verbosity normal
 curl -X POST "https://image-proxy-function.azurewebsites.net/api/ImageProxy?code=YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "url": "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg",
+    "url": "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg",
     "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-    "referrer": "https://indigo.ca"
+    "referrer": "https://.ca"
   }'
 ```
 

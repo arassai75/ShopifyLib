@@ -50,8 +50,8 @@ namespace ShopifyLib.Tests
 
             byte[] imageBytes;
 
-            // Step 1: Download from Indigo URL with User-Agent
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg";
+            // Step 1: Download from  URL with User-Agent
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg";
             Console.WriteLine($"🔄 Step 1: Downloading image from {imageUrl}");
             try
             {
@@ -66,14 +66,14 @@ namespace ShopifyLib.Tests
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Failed to download Indigo image: {ex.Message}");
+                Console.WriteLine($"❌ Failed to download  image: {ex.Message}");
                 return;
             }
             
             Console.WriteLine($"✅ Loaded! Size: {imageBytes.Length} bytes");
             
             // Force JPEG format as per documentation
-            var fileName = $"indigo-image-{DateTime.Now:yyyyMMdd-HHmmss}.jpg";
+            var fileName = $"-image-{DateTime.Now:yyyyMMdd-HHmmss}.jpg";
             var mimeType = "image/jpeg"; // Following documentation exactly
             
             Console.WriteLine($"📄 Using filename: {fileName}");
@@ -199,7 +199,7 @@ namespace ShopifyLib.Tests
             {
                 OriginalSource = stagedTarget.resourceUrl.ToString(),
                 ContentType = "IMAGE",
-                Alt = "Indigo image - Clean staged upload test"
+                Alt = " image - Clean staged upload test"
             };
 
             var fileCreateResponse = await _client.Files.UploadFilesAsync(new List<FileCreateInput> { fileCreateInput });

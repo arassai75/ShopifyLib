@@ -25,7 +25,7 @@ namespace ConsoleApp
         }
 
         /// <summary>
-        /// Demonstrates staged upload for problematic URLs like Indigo
+        /// Demonstrates staged upload for problematic URLs like 
         /// </summary>
         public async Task RunStagedUploadExample()
         {
@@ -36,8 +36,8 @@ namespace ConsoleApp
 
             try
             {
-                // Example 1: Upload Indigo image using staged upload
-                await UploadIndigoImageWithStagedUpload();
+                // Example 1: Upload  image using staged upload
+                await UploadImageWithStagedUpload();
 
                 Console.WriteLine();
 
@@ -60,18 +60,18 @@ namespace ConsoleApp
         }
 
         /// <summary>
-        /// Uploads an Indigo image using staged upload approach
+        /// Uploads an  image using staged upload approach
         /// </summary>
-        private async Task UploadIndigoImageWithStagedUpload()
+        private async Task UploadImageWithStagedUpload()
         {
-            Console.WriteLine("📸 Example 1: Uploading Indigo Image with Staged Upload");
+            Console.WriteLine("📸 Example 1: Uploading  Image with Staged Upload");
             Console.WriteLine("This demonstrates how to handle URLs that require User-Agent headers");
             Console.WriteLine();
 
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var fileName = "indigo-gift-image.jpg";
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var fileName = "-gift-image.jpg";
             var contentType = "image/jpeg";
-            var altText = "Indigo Gift Image - Staged Upload Example";
+            var altText = " Gift Image - Staged Upload Example";
             var userAgent = "Mozilla/5.0 (compatible; Shopify-Image-Uploader/1.0)";
 
             Console.WriteLine($"Image URL: {imageUrl}");

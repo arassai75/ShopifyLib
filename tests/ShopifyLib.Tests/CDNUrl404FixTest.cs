@@ -49,7 +49,7 @@ namespace ShopifyLib.Tests
         public async Task FixCDNUrl404_ComprehensiveApproach()
         {
             // Use a reliable test image URL
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/lego-77242/673419405270/1.jpg?width=810&maxHeight=810&quality=85";
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/lego-77242/673419405270/1.jpg?width=810&maxHeight=810&quality=85";
             var altText = "Dynamic Asset Test";
             
             Console.WriteLine("=== CDN URL 404 TEST ===");
@@ -383,7 +383,7 @@ namespace ShopifyLib.Tests
                 var urlWithExt = baseUrl;
                 if (!urlWithExt.EndsWith(ext))
                 {
-                    urlWithExt = urlWithExt.Replace(".jpg", FileContentType.Image, ext).Replace(".jpeg", ext).Replace(".png", ext).Replace(".webp", ext);
+                    urlWithExt = urlWithExt.Replace(".jpg", ext).Replace(".jpeg", ext).Replace(".png", ext).Replace(".webp", ext);
                 }
                 alternatives.Add(urlWithExt);
             }

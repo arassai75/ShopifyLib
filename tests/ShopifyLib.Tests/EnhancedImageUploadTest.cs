@@ -40,8 +40,8 @@ namespace ShopifyLib.Tests
         public async Task UploadImage_GetShopifyCDNUrl_DisplayAllAttributes()
         {
             // Arrange - Use a valid image URL
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - Enhanced Test";
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - Enhanced Test";
             
             Console.WriteLine("=== Enhanced Image Upload Test ===");
             Console.WriteLine("This test demonstrates getting Shopify CDN URLs and all image attributes");
@@ -280,12 +280,12 @@ namespace ShopifyLib.Tests
         [Fact]
         public async Task UploadImage_GetCDNUrl_FirstCall_REST_API()
         {
-            // Arrange - Use the Indigo dynamic URL
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/lego-exotic-parrot-31136/673419373623/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - REST ";
+            // Arrange - Use the  dynamic URL
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/lego-exotic-parrot-31136/673419373623/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - REST ";
             
-            Console.WriteLine("=== REST API First Call CDN URL Test (Indigo URL) ===");
-            Console.WriteLine("This test demonstrates getting CDN URLs with the FIRST call using REST API with Indigo dynamic URL");
+            Console.WriteLine("=== REST API First Call CDN URL Test ( URL) ===");
+            Console.WriteLine("This test demonstrates getting CDN URLs with the FIRST call using REST API with  dynamic URL");
             Console.WriteLine($"Image URL: {imageUrl}");
             Console.WriteLine($"Alt Text: {altText}");
             Console.WriteLine();
@@ -420,9 +420,9 @@ namespace ShopifyLib.Tests
         [Fact]
         public async Task DiagnoseCDNUrl404_TestAlternativeApproaches()
         {
-            // Arrange - Use the Indigo dynamic URL
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/lego-exotic-parrot-31136/673419373623/1.jpg?width=810&maxHeight=810&quality=85";
-            var altText = "Indigo Gift Image - CDN 404 Diagnosis";
+            // Arrange - Use the  dynamic URL
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/lego-exotic-parrot-31136/673419373623/1.jpg?width=810&maxHeight=810&quality=85";
+            var altText = " Gift Image - CDN 404 Diagnosis";
             
             Console.WriteLine("=== CDN URL 404 DIAGNOSIS TEST ===");
             Console.WriteLine("This test diagnoses CDN URL 404 issues and tests alternative approaches");

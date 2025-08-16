@@ -181,6 +181,7 @@ namespace ShopifyLib.Tests
                 {
                     imageData.Add((
                         product.ImageUrl,
+                        FileContentType.Image,
                         product.ProductId,
                         product.Upc,
                         batch.BatchId,

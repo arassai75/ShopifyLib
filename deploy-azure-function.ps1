@@ -68,4 +68,4 @@ $outboundIps = az functionapp show --resource-group $ResourceGroupName --name $F
 Write-Host "📡 Outbound IP addresses:" -ForegroundColor Yellow
 Write-Host $outboundIps -ForegroundColor White
 Write-Host ""
-Write-Host "💡 Use these IP addresses to whitelist with Indigo CDN" -ForegroundColor Cyan 
+Write-Host "💡 Use these IP addresses to whitelist with  CDN" -ForegroundColor Cyan 

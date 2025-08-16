@@ -14,10 +14,10 @@ namespace ShopifyLib.Tests
     [IntegrationTest]
     public class MemoryDownloadOnlyTest
     {
-        [Fact(DisplayName = "Download Indigo Image to Memory - No Upload")] 
-        public async Task DownloadIndigoImageToMemory_Only()
+        [Fact(DisplayName = "Download  Image to Memory - No Upload")] 
+        public async Task DownloadImageToMemory_Only()
         {
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg";
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg";
             Console.WriteLine("=== MEMORY DOWNLOAD ONLY TEST ===");
             Console.WriteLine($"This test demonstrates downloading to memory only (no upload)");
             Console.WriteLine($"Image URL: {imageUrl}");
@@ -57,14 +57,14 @@ namespace ShopifyLib.Tests
             Console.WriteLine("   Image downloaded to memory successfully");
             
             // Optionally, you could save the image to disk for manual inspection
-            // System.IO.File.WriteAllBytes("downloaded-indigo-image.jpg", imageBytes);
+            // System.IO.File.WriteAllBytes("downloaded--image.jpg", imageBytes);
             Console.WriteLine("\nYou can now manually upload this image to Shopify or inspect it.");
         }
 
-        [Fact(DisplayName = "Download Indigo Image and Staged Upload to Shopify")] 
+        [Fact(DisplayName = "Download  Image and Staged Upload to Shopify")] 
         public async Task DownloadAndStagedUploadToShopify()
         {
-            var imageUrl = "https://dynamic.indigoimages.ca/v1/gifts/gifts/673419406239/1.jpg";
+            var imageUrl = "https://dynamic.images.ca/v1/gifts/gifts/673419406239/1.jpg";
             Console.WriteLine("=== DOWNLOAD AND STAGED UPLOAD TO SHOPIFY TEST ===");
             Console.WriteLine($"Image URL: {imageUrl}");
             
@@ -96,10 +96,10 @@ namespace ShopifyLib.Tests
             Console.WriteLine($"✅ Downloaded! Size: {imageBytes.Length} bytes");
             Console.WriteLine($"Content-Type: {response.Content.Headers.ContentType}");
             
-            // Use the actual content type from the response (Indigo serves WebP even with .jpg URL)
+            // Use the actual content type from the response ( serves WebP even with .jpg URL)
             var mimeType = response.Content.Headers.ContentType?.ToString() ?? "image/webp";
             var extension = mimeType.Contains("webp") ? ".webp" : ".jpg";
-            var fileName = $"indigo-image-{DateTime.Now:yyyyMMdd-HHmmss}{extension}";
+            var fileName = $"-image-{DateTime.Now:yyyyMMdd-HHmmss}{extension}";
 
             // Step 2: Staged upload to Shopify using StagedUploadService
             using var shopifyClient = new HttpClient();
@@ -109,7 +109,7 @@ namespace ShopifyLib.Tests
             var graphQLService = new ShopifyLib.Services.GraphQLService(shopifyClient, shopifyConfig);
             var stagedUploadService = new ShopifyLib.Services.StagedUploadService(graphQLService, shopifyClient);
 
-            var fileCreateResponse = await stagedUploadService.UploadFileAsync(imageBytes, fileName, mimeType, "Indigo image staged upload");
+            var fileCreateResponse = await stagedUploadService.UploadFileAsync(imageBytes, fileName, mimeType, " image staged upload");
             var shopifyFile = fileCreateResponse.Files.Count > 0 ? fileCreateResponse.Files[0] : null;
             if (shopifyFile != null)
             {
